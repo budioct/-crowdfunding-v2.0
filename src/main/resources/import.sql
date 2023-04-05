@@ -1,0 +1,2 @@
+INSERT INTO new_crowdfunding.users(`name`, `occupation`, `email`, `passwordhash`, `avatarfilename`, `role`, `token`, `create_at`) VALUES('jamal', 'karwayan swasta', 'jamal@test.com', 'rahasia', null, 'user', 'kmzway87aa', '2023-04-05 16:56:22.400524800')
+INSERT INTO new_crowdfunding.users(`name`, `occupation`, `email`, `passwordhash`, `avatarfilename`, `role`, `token`, `create_at`) VALUES('tamik', 'karwayan swasta', 'tamik@test.com', 'rahasia', null, 'user', 'kmzway87aa', '2023-04-05 16:56:22.400524800')
