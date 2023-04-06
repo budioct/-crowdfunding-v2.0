@@ -19,6 +19,6 @@ public class CampaignDTO {
     private String slug;
     private LocalDateTime create_at;
     private LocalDateTime update_at;
-    private Long id_user;
+    private Long iduser;
 
 }
