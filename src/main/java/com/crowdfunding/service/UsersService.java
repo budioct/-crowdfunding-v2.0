@@ -8,7 +8,6 @@ import com.crowdfunding.utils.ConvertJSON;
 import com.crowdfunding.utils.MD5;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,9 +28,6 @@ public class UsersService {
 
     @Autowired
     Users users;
-
-    @Autowired
-    Gson gson;
 
     @Autowired
     ObjectMapper objectMapper;

@@ -1,7 +1,9 @@
 package com.crowdfunding.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 import lombok.experimental.FieldNameConstants;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -20,6 +22,7 @@ import java.util.List;
         allocationSize = 1,
         sequenceName = "seq_campaign",
         initialValue = 1)
+@Component
 public class Campaign {
 
     @Id

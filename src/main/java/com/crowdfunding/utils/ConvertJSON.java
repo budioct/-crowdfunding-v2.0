@@ -1,6 +1,9 @@
 package com.crowdfunding.utils;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
@@ -24,6 +27,7 @@ public class ConvertJSON {
                     if (instance == null) {
                         ourObjectMapper = instance = new ObjectMapper().registerModule(new JavaTimeModule());
                         instance.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+                        instance.disable(SerializationFeature.FAIL_ON_EMPTY_BEANS);
                     }
                 }
             }
@@ -39,15 +43,12 @@ public class ConvertJSON {
     }
 
     public static final String writeBro(Object value) throws JsonProcessingException {
-
         return ourObjectMapper.writeValueAsString(value);
-
     }
 
     public static final <T> T readBro(String value, Class<T> valueType) throws JsonProcessingException {
         return ourObjectMapper.readValue(value, valueType);
     }
-
 
 
 }

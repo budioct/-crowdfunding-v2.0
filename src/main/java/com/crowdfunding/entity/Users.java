@@ -1,6 +1,7 @@
 package com.crowdfunding.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 import lombok.experimental.FieldNameConstants;
 import org.hibernate.annotations.Fetch;
@@ -25,6 +26,7 @@ import java.util.List;
         sequenceName = "seq_users",
         initialValue = 1)
 @Component
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Users {
 
     @Id
