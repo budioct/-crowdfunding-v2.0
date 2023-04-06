@@ -11,7 +11,6 @@ import java.util.Date;
 @Component
 public class GenerateJWT {
 
-
     public static String createToken(String user ){
 
         long nowMillis = System.currentTimeMillis();
@@ -22,14 +21,12 @@ public class GenerateJWT {
                 .setHeaderParam("alg", "HS256")
                 .setId(user)
                 .setIssuedAt(now)
-//                .setSubject("bootcamp")
-//                .setIssuer("EKSAD")
-                .setSubject("pemesanan")
-                .setIssuer("primajaya")
+                .setSubject("M4k4anbakso")
+                .setIssuer("B4mB4ng")
                 .setExpiration(new Date(System.currentTimeMillis() + 24 * 60 * 60 * 1000))
 //                .setExpiration(new Date(System.currentTimeMillis() +  40 * 1000))
-//                .signWith(SignatureAlgorithm.HS256, "EKSAD123");
-                .signWith(SignatureAlgorithm.HS256, "primajaya123");
+//                .signWith(SignatureAlgorithm.HS256, "4man53lamatLanc4r8arok4h");
+                .signWith(SignatureAlgorithm.HS512, "4man53lamatLanc4r8arok4h");
 
         return builder.compact();
 
@@ -40,7 +37,7 @@ public class GenerateJWT {
 
         Claims claims = null;
 
-        claims = Jwts.parser().setSigningKey("primajaya123")
+        claims = Jwts.parser().setSigningKey("4man53lamatLanc4r8arok4h")
                 .parseClaimsJws(Token)
                 .getBody();
 

@@ -13,7 +13,6 @@ import static com.crowdfunding.utils.GenerateJWT.validateToken;
 @Component
 public class CheckToken {
 
-
     public static Map<String, Object> checkToken(String token, String username) {
 
         Map<String, Object> response = new HashMap<String, Object>();
