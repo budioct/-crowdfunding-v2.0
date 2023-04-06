@@ -37,7 +37,7 @@ public class UsersController {
 
     }
 
-    @GetMapping("/getbyid/{id}")
+    @GetMapping("getbyid/{id}")
     public ResponseEntity<Map<String, Object>> getById(@PathVariable(value = "id") final Long id){
         try{
             response = usersService.byId(id);

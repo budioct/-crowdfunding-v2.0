@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -35,5 +36,23 @@ public class CampaignController {
             return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
         }
     }
+
+    @GetMapping("getbyid/{id}")
+    public ResponseEntity<Map<String, Object>> getById(@PathVariable(value = "id") Long id){
+        try{
+            response = campaignService.byId(id);
+            return new ResponseEntity<>(response, HttpStatus.OK);
+
+        } catch (Exception e){
+            e.printStackTrace();
+            response.put(Constants.STATUS_CODE, Constants.FAILED_CODE);
+            response.put(Constants.STATUS, Constants.FAILED);
+            return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+        }
+
+    }
+
+
+
 
 }
