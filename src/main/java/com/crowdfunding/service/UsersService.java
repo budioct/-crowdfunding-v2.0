@@ -94,34 +94,34 @@ public class UsersService {
 
 //            Optional<Users> byId = usersRepository.findById(usersDTO.getIduser());
 //            if (byId.isPresent()) {
-                Optional<Users> byUsername = usersRepository.findUsersByName(usersDTO.getName());
-                if (byUsername.isPresent()) {
-                    map.put(Constants.STATUS, "Username Sudah Ada Bro, coba yang lain!");
-                    map.put(Constants.STATUS_CODE, Constants.FAILED_CODE);
+            Optional<Users> byUsername = usersRepository.findUsersByName(usersDTO.getName());
+            if (byUsername.isPresent()) {
+                map.put(Constants.STATUS, "Username Sudah Ada Bro, coba yang lain!");
+                map.put(Constants.STATUS_CODE, Constants.FAILED_CODE);
+            } else {
+                Users build = Users.builder()
+                        .name(usersDTO.getName())
+                        .email(usersDTO.getEmail())
+                        .occupation(usersDTO.getOccupation())
+                        .avatarfilename(usersDTO.getAvatarfilename())
+                        .passwordhash(MD5.encrypt(usersDTO.getPasswordhash()))
+                        .role(usersDTO.getRole())
+                        .token(usersDTO.getToken())
+                        .create_at(LocalDateTime.now())
+                        .update_at(LocalDateTime.now())
+                        .build();
+
+                Users cek = usersRepository.save(build);
+
+                if (cek != null) {
+                    map.put(Constants.STATUS, Constants.SUCCESS);
+                    map.put(Constants.STATUS_CODE, Constants.SUCCESS_CODE);
                 } else {
-                    Users build = Users.builder()
-                            .name(usersDTO.getName())
-                            .email(usersDTO.getEmail())
-                            .occupation(usersDTO.getOccupation())
-                            .avatarfilename(usersDTO.getAvatarfilename())
-                            .passwordhash(MD5.encrypt(usersDTO.getPasswordhash()))
-                            .role(usersDTO.getRole())
-                            .token(usersDTO.getToken())
-                            .create_at(LocalDateTime.now())
-                            .update_at(LocalDateTime.now())
-                            .build();
-
-                    Users cek = usersRepository.save(build);
-
-                    if (cek != null) {
-                        map.put(Constants.STATUS, Constants.SUCCESS);
-                        map.put(Constants.STATUS_CODE, Constants.SUCCESS_CODE);
-                    } else {
-                        map.put(Constants.STATUS, Constants.FAILED);
-                        map.put(Constants.STATUS_CODE, Constants.FAILED_CODE);
-                    }
-
+                    map.put(Constants.STATUS, Constants.FAILED);
+                    map.put(Constants.STATUS_CODE, Constants.FAILED_CODE);
                 }
+
+            }
 //            } else {
 //                map.put(Constants.STATUS, "Users: " + Constants.FAILED);
 //                map.put(Constants.STATUS_CODE, Constants.FAILED_CODE);
@@ -134,6 +134,27 @@ public class UsersService {
             return map;
             //throw new RuntimeException(e);
         }
+
+    }
+
+    public Map<String, Object> delete(Long id) {
+        Map<String, Object> map = new HashMap<>();
+        Optional<Users> getid = usersRepository.findById(id);
+        if (getid.isPresent()) {
+            try {
+                users.setIduser(getid.get().getIduser());
+                usersRepository.deleteById(getid.get().getIduser());
+                map.put(Constants.STATUS, Constants.SUCCESS);
+                map.put(Constants.STATUS_CODE, Constants.SUCCESS_CODE);
+            } catch (Exception e) {
+                map.put(Constants.STATUS, Constants.FAILED);
+                map.put(Constants.STATUS_CODE, Constants.FAILED_CODE);
+            }
+        } else {
+            map.put(Constants.STATUS, Constants.FAILED);
+            map.put(Constants.STATUS_CODE, Constants.FAILED_CODE);
+        }
+        return map;
 
     }
 

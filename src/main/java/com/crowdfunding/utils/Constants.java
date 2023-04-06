@@ -7,10 +7,10 @@ public class Constants {
 
     public static final String API_version = "api/v1/";
     public static final String API_USER = API_version+"user/";
-    public static final String API_KARYAWAN = API_version+"campaign/";
-    public static final String API_UNIT = API_version+"campaignimage/";
-    public static final String API_SUPPLIER = API_version+"transaction/";
-//    public static final String API_PO = API_version+"po/";
+    public static final String API_CAMPAIGN = API_version+"campaign/";
+    public static final String API_CAMPAIGN_IMAGE = API_version+"campaignimage/";
+    public static final String API_TRANSACTION = API_version+"transaction/";
+    public static final String API_TEST = API_version+"test/";
 
     public static final String TOKEN = "token";
     public static final String STATUS = "status";
