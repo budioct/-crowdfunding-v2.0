@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 //@Builder
 @Component
 public class UsersDTO {
-    private Long iduser;
+//    private Long iduser;
     private String name;
     private String occupation;
     private String email;
