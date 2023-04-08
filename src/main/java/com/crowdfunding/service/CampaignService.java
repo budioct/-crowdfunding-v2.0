@@ -144,5 +144,26 @@ public class CampaignService {
         }
     }
 
+    public Map<String, Object> delete(Long id) {
+        Map<String, Object> map = new HashMap<>();
+        Optional<Campaign> getid = campaignRepository.findById(id);
+        if (getid.isPresent()) {
+            try {
+                campaign.setIdcampaign(getid.get().getIdcampaign());
+                campaignRepository.deleteById(getid.get().getIdcampaign());
+                map.put(Constants.STATUS, Constants.SUCCESS);
+                map.put(Constants.STATUS_CODE, Constants.SUCCESS_CODE);
+            } catch (Exception e) {
+                map.put(Constants.STATUS, Constants.FAILED);
+                map.put(Constants.STATUS_CODE, Constants.FAILED_CODE);
+            }
+        } else {
+            map.put(Constants.STATUS, Constants.FAILED);
+            map.put(Constants.STATUS_CODE, Constants.FAILED_CODE);
+        }
+        return map;
+
+    }
+
 
 }

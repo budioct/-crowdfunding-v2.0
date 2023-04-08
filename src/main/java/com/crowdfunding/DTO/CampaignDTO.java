@@ -4,6 +4,7 @@ import lombok.Data;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @Component
@@ -20,5 +21,7 @@ public class CampaignDTO {
     private LocalDateTime create_at;
     private LocalDateTime update_at;
     private Long iduser;
+
+    private List<UsersDTO> usersDTOList;
 
 }

@@ -63,6 +63,20 @@ public class CampaignController {
 
     }
 
+    @DeleteMapping("delete/{id}")
+    public ResponseEntity<Map<String, Object>> deleteById(@PathVariable(value = "id") final Long id){
+        try{
+            response = campaignService.delete(id);
+            return new ResponseEntity<>(response, HttpStatus.OK);
+        } catch (Exception e){
+            e.printStackTrace();
+            response.put(Constants.STATUS_CODE, Constants.FAILED_CODE);
+            response.put(Constants.STATUS, Constants.FAILED);
+            return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+        }
+    }
+
+
 
 
 
